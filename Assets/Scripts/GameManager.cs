@@ -5,9 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
-	public AudioManager AudioManager { get; private set; }
-	public SceneManager SceneManager { get; private set; }
-	public UIManager UIManager { get; private set; }
+	public AudioManager AudioManager;
+	public SceneManager SceneManager;
+	public UIManager UIManager;
 
 	private void Awake()
 	{

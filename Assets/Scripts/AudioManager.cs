@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public GameManager GameManager;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void Start()
+	{
+		GameManager = GameManager.Instance;
+	}
 }

@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6e86e87dc098143928859d46575731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 0}
 --- !u!1 &352190026
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a3c14a539f5ae4d8b114d86a535198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioManager: {fileID: 176762238}
+  SceneManager: {fileID: 882865456}
+  UIManager: {fileID: 1009463453}
 --- !u!4 &555581639
 Transform:
   m_ObjectHideFlags: 0
@@ -418,6 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed8cdd40819edb46b584975b2ed36c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 0}
 --- !u!1 &1009463451
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,6 +468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d1d95666c1ada4e9a6450e06dad3d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 0}
 --- !u!1 &1912442313
 GameObject:
   m_ObjectHideFlags: 0

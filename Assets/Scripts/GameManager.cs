@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 	public SceneLoader SceneLoader;
 	public UIManager UIManager;
 
+	public enum gameState { Active, Paused}
+	public gameState state {  get; private set; }
+
 	private void Awake()
 	{
 		if (Instance == null)
@@ -16,6 +19,12 @@ public class GameManager : MonoBehaviour
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
+		else
+		{
+			Destroy(gameObject);
+		}
+
+		SetGameState(gameState.Active);
 	}
 
 	private void Start()
@@ -23,5 +32,29 @@ public class GameManager : MonoBehaviour
 		AudioManager = FindObjectOfType<AudioManager>();
 		SceneLoader = FindObjectOfType<SceneLoader>();
 		UIManager = FindObjectOfType<UIManager>();
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			if (state != gameState.Active)
+			{
+				SetGameState(gameState.Active);
+				UIManager.PauseUI(false);
+				Time.timeScale = 1;
+			}
+			else
+			{
+				SetGameState(gameState.Paused);
+				UIManager.PauseUI(true);
+				Time.timeScale = 0;
+			}
+		}
+	}
+
+	private void SetGameState(gameState _state)
+	{
+		state = _state;
 	}
 }

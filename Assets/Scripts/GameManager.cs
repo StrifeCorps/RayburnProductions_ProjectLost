@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {  get; private set; }
 	public AudioManager AudioManager;
-	public SceneManager SceneManager;
+	public SceneLoader SceneLoader;
 	public UIManager UIManager;
 
 	private void Awake()
@@ -15,10 +15,13 @@ public class GameManager : MonoBehaviour
 		{
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
-
-			AudioManager = GetComponent<AudioManager>();
-			SceneManager = GetComponent<SceneManager>();
-			UIManager = GetComponent<UIManager>();
 		}
+	}
+
+	private void Start()
+	{
+		AudioManager = FindObjectOfType<AudioManager>();
+		SceneLoader = FindObjectOfType<SceneLoader>();
+		UIManager = FindObjectOfType<UIManager>();
 	}
 }

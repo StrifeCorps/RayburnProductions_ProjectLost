@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 	public SceneLoader SceneLoader;
 	public UIManager UIManager;
 
-	public enum gameState { Active, Paused}
+	public enum gameState { Active, Paused, Loading}
 	public gameState state {  get; private set; }
 
 	private void Awake()
@@ -41,13 +41,11 @@ public class GameManager : MonoBehaviour
 			if (state != gameState.Active)
 			{
 				SetGameState(gameState.Active);
-				UIManager.PauseUI(false);
 				Time.timeScale = 1;
 			}
 			else
 			{
 				SetGameState(gameState.Paused);
-				UIManager.PauseUI(true);
 				Time.timeScale = 0;
 			}
 		}
@@ -56,5 +54,10 @@ public class GameManager : MonoBehaviour
 	private void SetGameState(gameState _state)
 	{
 		state = _state;
+	}
+
+	public void ResetStateToActivate()
+	{
+		state = gameState.Active;
 	}
 }

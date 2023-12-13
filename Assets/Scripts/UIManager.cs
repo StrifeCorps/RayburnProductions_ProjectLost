@@ -17,11 +17,18 @@ public class UIManager : MonoBehaviour
     {
         GameManager = GameManager.Instance;
     }
-    public void PauseUI(bool _active)
+
+	private void Update()
+	{
+		if (GameManager.state == GameManager.gameState.Paused) { PauseUI(true); }
+        else PauseUI(false);
+	}
+
+	public void PauseUI(bool _active)
     {
         if(mainMenu.activeSelf) { return; }
 
-        //ClearUI();
+        ClearUI();
         if (_active) { pauseMenu.SetActive(true); }
         else { pauseMenu.SetActive(false); }
     }

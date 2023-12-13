@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour
 	public void LoadNextScene(string _sceneIndex)
 	{
 		SceneManager.LoadScene(_sceneIndex);
+		GameManager.ResetStateToActivate();
 	}
 
 	public void LoadNewGame()

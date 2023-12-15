@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
 
 	public enum gameState { Active, Paused, Loading}
 	public gameState state {  get; private set; }
+
+	private Camera mainCamera;
 
 	private void Awake()
 	{
@@ -36,7 +39,29 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
+		
+	}
+
+	private void SetGameState(gameState _state)
+	{
+		state = _state;
+	}
+
+	public void ResetStateToActivate()
+	{
+		state = gameState.Active;
+		Time.timeScale = 1;
+	}
+
+	public void AssignMainCamera()
+	{
+		mainCamera = Camera.main;
+		mainCamera.AddComponent<CameraControl>();
+	}
+
+	public void OnPause()
+	{
+		if (SceneLoader.ActiveSceneName() != "lvl_MainMenu")
 		{
 			if (state != gameState.Active)
 			{
@@ -49,15 +74,5 @@ public class GameManager : MonoBehaviour
 				Time.timeScale = 0;
 			}
 		}
-	}
-
-	private void SetGameState(gameState _state)
-	{
-		state = _state;
-	}
-
-	public void ResetStateToActivate()
-	{
-		state = gameState.Active;
 	}
 }

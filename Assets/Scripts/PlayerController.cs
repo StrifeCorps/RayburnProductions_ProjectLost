@@ -7,22 +7,20 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private int moveSpeed;
+    [SerializeField] private InputActionReference move;
     private Vector3 movePosition;
 
-	// Start is called before the first frame update
-	void Start()
+	// Update is called once per frame
+	void FixedUpdate()
     {
-
+        if(move.action.IsPressed()) { 
+            OnMove(); 
+            transform.Translate(movePosition * moveSpeed * Time.deltaTime); 
+        }
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public void OnMove()
     {
-        transform.Translate(movePosition * moveSpeed * Time.deltaTime); 
-    }
-
-    void OnMove(InputValue _input)
-    {
-        movePosition = _input.Get<Vector2>();
+        movePosition = move.action.ReadValue<Vector2>();
 	}
 }

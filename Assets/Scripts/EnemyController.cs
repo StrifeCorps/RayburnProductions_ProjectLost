@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         speedMultiplier = .2f;
+        isChasing = false;
 
         Spawn();
     }

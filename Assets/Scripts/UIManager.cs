@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
     {
         ClearUI();
 		GameManager.SceneLoader.LoadNextScene("lvl_MainMenu");
-        SetActiveUI(mainMenu);
+        StartCoroutine(MainMenuUIActivate());
 	}
 
     public void SetActiveUI(GameObject _menuUI)
@@ -67,5 +67,11 @@ public class UIManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    IEnumerator MainMenuUIActivate()
+    {
+        yield return new WaitForEndOfFrame();
+        SetActiveUI(mainMenu);
     }
 }

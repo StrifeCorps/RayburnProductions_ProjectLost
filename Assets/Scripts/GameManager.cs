@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
 	private void Awake()
 	{
+		//Singleton 
 		if (Instance == null)
 		{
 			Instance = this;
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
 		Time.timeScale = 1;
 	}
 
+	//Assigns camera script to main camera - called when a scene is loaded
 	public void AssignMainCamera()
 	{
 		mainCamera = Camera.main;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5980091031659398462}
   - component: {fileID: 2160707779791016377}
   - component: {fileID: 2555276513459420182}
-  - component: {fileID: -5087189736682880735}
+  - component: {fileID: -3288993819731209776}
   m_Layer: 0
   m_Name: spr_wickedtree_01
   m_TagString: Untagged
@@ -144,7 +144,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.8, y: 6.4}
+    oldSize: {x: 6.4, y: 6.8}
     newSize: {x: 0.29, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -153,7 +153,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.4115717, y: 0.6191149}
   m_EdgeRadius: 0
---- !u!114 &-5087189736682880735
+--- !u!114 &-3288993819731209776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,7 +162,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 900959072141939084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc292808f2e9d847a9854e629a9a741, type: 3}
+  m_Script: {fileID: 11500000, guid: c68a8d2be9a36a34a9ebe347c4a142f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
+  outlineMaterial: {fileID: 2100000, guid: b9057e306f1f17b4bbb4f6883247894f, type: 2}
+  interact: {fileID: 6733718298826442970, guid: 3fad1e1ea4d190943916ca6219318fa8, type: 3}

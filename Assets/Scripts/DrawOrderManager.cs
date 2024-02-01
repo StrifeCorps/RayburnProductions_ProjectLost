@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DrawOrderManager : MonoBehaviour
 {
-	[SerializeField] SpriteRenderer spriteRenderer;
+	private SpriteRenderer spriteRenderer;
 
 	void Awake()
 	{

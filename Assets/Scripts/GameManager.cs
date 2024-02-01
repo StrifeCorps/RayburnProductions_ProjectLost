@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,10 +11,11 @@ public class GameManager : MonoBehaviour
 	public SceneLoader SceneLoader;
 	public UIManager UIManager;
 
-	public enum gameState { Active, Paused, Loading}
+	public enum gameState { Active, UI, Loading}
 	public gameState state {  get; private set; }
 
 	private Camera mainCamera;
+	[SerializeField] private PlayerInput playerInput;
 
 	private void Awake()
 	{
@@ -27,8 +29,6 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-
-		SetGameState(gameState.Active);
 	}
 
 	private void Start()
@@ -36,22 +36,41 @@ public class GameManager : MonoBehaviour
 		AudioManager = FindObjectOfType<AudioManager>();
 		SceneLoader = FindObjectOfType<SceneLoader>();
 		UIManager = FindObjectOfType<UIManager>();
-	}
-
-	private void Update()
-	{
-		
+		playerInput = GetComponent<PlayerInput>();
 	}
 
 	private void SetGameState(gameState _state)
 	{
 		state = _state;
+
+		switch (state)
+		{
+			case gameState.Active:
+				playerInput.SwitchCurrentActionMap("Player");
+				break;
+			case gameState.UI:
+				playerInput.SwitchCurrentActionMap("UI");
+				break;
+			case gameState.Loading:
+				break;
+			default:
+				Debug.Log("Game state is currently unassigned.");
+				break;
+		}
+
+		Debug.Log(playerInput.currentActionMap);
 	}
 
-	public void ResetStateToActivate()
+	public void ResetStateToActive()
 	{
-		state = gameState.Active;
-		Time.timeScale = 1;
+		if (SceneLoader.ActiveSceneName() == "lvl_MainMenu")
+		{
+			SetGameState(gameState.UI);
+		}
+		else
+		{
+			SetGameState(gameState.Active);
+		}
 	}
 
 	//Assigns camera script to main camera - called when a scene is loaded
@@ -60,7 +79,7 @@ public class GameManager : MonoBehaviour
 		mainCamera = Camera.main;
 		mainCamera.AddComponent<CameraControl>();
 	}
-
+	//Called via broadcast from input controller
 	public void OnPause()
 	{
 		if (SceneLoader.ActiveSceneName() != "lvl_MainMenu")
@@ -68,12 +87,12 @@ public class GameManager : MonoBehaviour
 			if (state != gameState.Active)
 			{
 				SetGameState(gameState.Active);
-				Time.timeScale = 1;
+				UIManager.PauseUI(false);
 			}
 			else
 			{
-				SetGameState(gameState.Paused);
-				Time.timeScale = 0;
+				SetGameState(gameState.UI);
+				UIManager.PauseUI(true);
 			}
 		}
 	}

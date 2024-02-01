@@ -35,7 +35,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        FollowPlayer();
+		if (GameManager.Instance.state != GameManager.gameState.Active) { return; }
+		FollowPlayer();
     }
 
 

@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 5
@@ -126,10 +126,10 @@ TextureImporter:
       name: spr_wickedtree_01_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 1
-        width: 29
-        height: 32
+        x: 1
+        y: 0
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,7 +137,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8589b1305b475334eab7d1f21e85f95c
+      spriteID: 2deee0d0974623641b64e710a464c13d
       internalID: 613292282
       vertices: []
       indices: 
@@ -147,10 +147,10 @@ TextureImporter:
       name: spr_wickedtree_01_1
       rect:
         serializedVersion: 2
-        x: 34
-        y: 1
-        width: 29
-        height: 32
+        x: 33
+        y: 0
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,7 +158,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2f5c2c51529b8845a21a9423215e6e6
+      spriteID: 0d0888e00aacbbd42bda25a5289c0d07
       internalID: -320917399
       vertices: []
       indices: 
@@ -168,10 +168,10 @@ TextureImporter:
       name: spr_wickedtree_01_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 1
-        width: 29
-        height: 32
+        x: 65
+        y: 0
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,7 +179,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6f93f4dcc50b0b48aafe36ab18400d3
+      spriteID: 2a0a1fc09f1c7bd4884b72e23652cc33
       internalID: -378577132
       vertices: []
       indices: 
@@ -189,10 +189,10 @@ TextureImporter:
       name: spr_wickedtree_01_3
       rect:
         serializedVersion: 2
-        x: 98
-        y: 1
-        width: 29
-        height: 32
+        x: 97
+        y: 0
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,7 +200,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25b4fd7bddbfd0249981987c89b16bb1
+      spriteID: 657af033163f31a49aff110ce7c0c333
       internalID: 1548186098
       vertices: []
       indices: 
@@ -210,10 +210,10 @@ TextureImporter:
       name: spr_wickedtree_01_4
       rect:
         serializedVersion: 2
-        x: 130
-        y: 1
-        width: 29
-        height: 32
+        x: 129
+        y: 0
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,7 +221,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf7b97899ef9dca4e97fbe29e597f3c7
+      spriteID: d35e9e69aab96f74b9fbead1fc32d195
       internalID: 593525293
       vertices: []
       indices: 
@@ -231,10 +231,10 @@ TextureImporter:
       name: spr_wickedtree_01_5
       rect:
         serializedVersion: 2
-        x: 162
-        y: 1
-        width: 29
-        height: 32
+        x: 161
+        y: 0
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,7 +242,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 552d7fe660455cf4da53823022cc8fda
+      spriteID: 1c197b9c452c66242839f721ef4050ac
       internalID: -947584468
       vertices: []
       indices: 

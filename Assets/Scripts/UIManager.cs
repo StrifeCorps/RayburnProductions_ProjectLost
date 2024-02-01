@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class UIManager : MonoBehaviour
 	public GameManager GameManager;
     [SerializeField] GameObject mainMenu;
 	[SerializeField] GameObject pauseMenu;
+    private Selectable uiElementToFocus;
 
 	#endregion
 
@@ -18,19 +20,55 @@ public class UIManager : MonoBehaviour
         GameManager = GameManager.Instance;
     }
 
-	private void Update()
-	{
-		if (GameManager.state == GameManager.gameState.Paused) { PauseUI(true); }
-        else PauseUI(false);
+	#region UI Buttons
+    public void LoadMainMenu()
+    {
+        ClearUI();
+		GameManager.SceneLoader.LoadNextScene("lvl_MainMenu");
+        StartCoroutine(MainMenuUIActivate());
 	}
+
+	public void StartNewGame()
+	{
+		ClearUI();
+        GameManager.SceneLoader.LoadNextScene(GameManager.SceneLoader.sceneList[1]);
+	}
+
+	public void ExitFromPauseMenu()
+	{
+		GameManager.Instance.OnPause();
+	}
+
+	public void ExitGame()
+	{
+		//SaveGame Before Quitting
+
+#if UNITY_EDITOR
+		UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+	}
+
+	#endregion
+
+	#region UI Backend
 
 	public void PauseUI(bool _active)
     {
         if(mainMenu.activeSelf) { return; }
 
-        ClearUI();
-        if (_active) { pauseMenu.SetActive(true); }
-        else { pauseMenu.SetActive(false); }
+        if (_active) 
+        {
+            SetActiveUI(pauseMenu);
+            StartCoroutine(SetUIFocus(pauseMenu));
+		}
+        else { ClearUI(); }
+	}
+
+    public void MainMenuUI()
+    {
+        StartCoroutine(MainMenuUIActivate());
     }
 
     public void ClearUI()
@@ -39,39 +77,29 @@ public class UIManager : MonoBehaviour
         mainMenu.SetActive(false);
     }
 
-    public void LoadMainMenu()
-    {
-        ClearUI();
-		GameManager.SceneLoader.LoadNextScene("lvl_MainMenu");
-        StartCoroutine(MainMenuUIActivate());
-	}
-
-    public void SetActiveUI(GameObject _menuUI)
+    private void SetActiveUI(GameObject _menuUI)
     {
         ClearUI();
         _menuUI.SetActive(true);
-    }
-
-    public void StartNewGame()
-    {
-        ClearUI();
-        GameManager.SceneLoader.LoadNewGame();
-    }
-
-    public void ExitGame()
-    {
-        //SaveGame Before Quitting
-
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
     }
 
     IEnumerator MainMenuUIActivate()
     {
         yield return new WaitForEndOfFrame();
         SetActiveUI(mainMenu);
+        StartCoroutine(SetUIFocus(mainMenu));
     }
+
+    IEnumerator SetUIFocus(GameObject menu)
+    {
+        if(menu == null) {
+            Debug.Log("Nothing was passed into the Ui Set focus.");
+            yield break; }
+        yield return new WaitForEndOfFrame();
+
+		uiElementToFocus = menu.GetComponentInChildren<Button>();
+		EventSystem.current.SetSelectedGameObject(uiElementToFocus.gameObject);
+    }
+
+    #endregion
 }

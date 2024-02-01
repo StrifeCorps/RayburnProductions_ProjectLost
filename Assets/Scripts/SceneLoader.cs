@@ -13,10 +13,6 @@ public class SceneLoader : MonoBehaviour
 	void Start()
 	{
 		GameManager = GameManager.Instance;
-	}
-
-	private void OnEnable()
-	{
 		SceneManager.sceneLoaded += OnSceneLoaded;
 	}
 
@@ -28,11 +24,6 @@ public class SceneLoader : MonoBehaviour
 	public void LoadNextScene(string _sceneIndex)
 	{
 		SceneManager.LoadScene(_sceneIndex);
-	}
-
-	public void LoadNewGame()
-	{
-		LoadNextScene(sceneList[1]);
 	}
 
 	public string ActiveSceneName()
@@ -47,7 +38,7 @@ public class SceneLoader : MonoBehaviour
 
 	public void GameManagerOnSceneLoad()
 	{
-		GameManager.ResetStateToActivate();
+		GameManager.ResetStateToActive();
 		GameManager.AssignMainCamera();
 	}
 }

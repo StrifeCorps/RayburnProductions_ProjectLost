@@ -12,18 +12,28 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject mainMenu;
 	[SerializeField] GameObject pauseMenu;
     private Selectable uiElementToFocus;
+    private bool isFocused;
 
-	#endregion
+    #endregion
 
-	void Start()
+
+    #region Initialize
+
+    void Start()
     {
         GameManager = GameManager.Instance;
     }
 
-	#region UI Buttons
+	#endregion
+
+	private void Update()
+	{
+		if (EventSystem.current.currentSelectedGameObject == null && GameManager.state == GameManager.gameState.UI) { CheckAndSetUIFocus(); }
+	}
+
+    #region UI Buttons
     public void LoadMainMenu()
     {
-        ClearUI();
 		GameManager.SceneLoader.LoadNextScene("lvl_MainMenu");
         StartCoroutine(MainMenuUIActivate());
 	}
@@ -81,6 +91,12 @@ public class UIManager : MonoBehaviour
     {
         ClearUI();
         _menuUI.SetActive(true);
+    }
+
+    public void CheckAndSetUIFocus()
+    {
+        if (mainMenu.activeSelf) { StartCoroutine(SetUIFocus(mainMenu)); }
+        if (pauseMenu.activeSelf) { StartCoroutine(SetUIFocus(pauseMenu)); }
     }
 
     IEnumerator MainMenuUIActivate()

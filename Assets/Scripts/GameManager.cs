@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance {  get; private set; }
+	#region Variables
+	public static GameManager Instance {  get; private set; }
 	public AudioManager AudioManager;
 	public SceneLoader SceneLoader;
 	public UIManager UIManager;
@@ -16,7 +17,9 @@ public class GameManager : MonoBehaviour
 
 	private Camera mainCamera;
 	[SerializeField] private PlayerInput playerInput;
+	#endregion
 
+	#region Initialize
 	private void Awake()
 	{
 		//Singleton 
@@ -37,7 +40,10 @@ public class GameManager : MonoBehaviour
 		SceneLoader = FindObjectOfType<SceneLoader>();
 		UIManager = FindObjectOfType<UIManager>();
 		playerInput = GetComponent<PlayerInput>();
+
+		ResetStateToActive();
 	}
+	#endregion
 
 	private void SetGameState(gameState _state)
 	{
@@ -58,7 +64,7 @@ public class GameManager : MonoBehaviour
 				break;
 		}
 
-		Debug.Log(playerInput.currentActionMap);
+		//Debug.Log(playerInput.currentActionMap);
 	}
 
 	public void ResetStateToActive()

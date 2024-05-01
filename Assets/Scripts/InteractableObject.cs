@@ -9,6 +9,8 @@ public class InteractableObject : MonoBehaviour
 {
 	private SpriteRenderer spriteRenderer;
 	private string shaderOutlineThicness;
+	private bool IsBeingInteractedWith;
+	private bool inputLimit = false;
 	[SerializeField] private Material outlineMaterial;
 	[SerializeField] private InputActionReference interact;
 
@@ -31,13 +33,18 @@ public class InteractableObject : MonoBehaviour
 	private void Update()
 	{
 		if(GameManager.Instance.state != GameManager.gameState.Active) { return; }
+
+		if (interact.action.IsPressed() && !inputLimit) { IsBeingInteractedWith = true; }
+		else if (interact.action.IsPressed() && inputLimit) { return; } 
+		else { IsBeingInteractedWith = false; inputLimit = false; }
 	}
 
 	private void OnTriggerStay2D(Collider2D collision)
 	{
-        if(collision.gameObject.GetComponent<PlayerController>() != null && interact.action.WasPressedThisFrame())
+        if(collision.gameObject.GetComponent<PlayerController>() != null && IsBeingInteractedWith && !inputLimit)
 		{
 			DoAction();
+			inputLimit = true;
 		}
     }
 

@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class TestInteractable : InteractableObject
 {
-    
+	public override void DoAction()
+	{
+		gameObject.SetActive(false);
+	}
 }

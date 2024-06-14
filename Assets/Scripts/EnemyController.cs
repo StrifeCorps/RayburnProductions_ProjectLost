@@ -12,21 +12,32 @@ public class EnemyController : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
+    private Animator animator;
+    private string currentAnimation;
     private Vector2 moveSpeed;
     private bool isChasing;
+    [SerializeField] private int cooldownTimer;
     [SerializeField] private int offsetPlayer_x, offsetPlayer_y;
     [SerializeField] private int chaseTimer;
     [SerializeField] private float speedMultiplier;
     public static event Action OnSpawn;
 	public static event Action OnDespawn;
 
-    // Start is called before the first frame update
-    void Start()
+	//Animations
+	private const string STALKER_SPAWN = "stalker_spawn";
+	private const string STALKER_DESPAWN = "stalker_despawn";
+	private const string STALKER_LOOK = "stalker_look";
+	private const string STALKER_WALK = "stalker_walk";
+	private const string STALKER_EAT = "stalker_eat";
+
+	// Start is called before the first frame update
+	void Start()
     {
         player = FindObjectOfType<PlayerController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
-        speedMultiplier = .2f;
+        animator = GetComponent<Animator>();
+        speedMultiplier = .1f;
         isChasing = false;
 
         Spawn();
@@ -48,24 +59,31 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    void DespawnAnimationTransition()
+    {
+        AnimationChange(STALKER_DESPAWN);
+    }
+
     void Spawn()
     {
         SwitchSpriteAndCollisionActiveStatus(true);
         OnSpawn?.Invoke();
         Reposition();
-        StartCoroutine(ChaseCountdown());
+        AnimationChange(STALKER_SPAWN);
     }
     void Despawn()
     {
+        AnimationChange(STALKER_WALK);
         SwitchSpriteAndCollisionActiveStatus(false);
 		OnDespawn?.Invoke();
-        StartCoroutine(ChaseCooldown(UnityEngine.Random.Range(0,5)));
+        StartCoroutine(ChaseCooldown(cooldownTimer));
 	}
 
     IEnumerator ChaseCountdown()
     {
         int count = 0;
         isChasing = true;
+        AnimationChange(STALKER_WALK);
 
         while(count <= chaseTimer)
         {  
@@ -74,7 +92,7 @@ public class EnemyController : MonoBehaviour
         }
 
         isChasing = false;
-        Despawn();
+        AnimationChange(STALKER_LOOK);
     }
 
     IEnumerator ChaseCooldown(int _cooldown)
@@ -107,4 +125,20 @@ public class EnemyController : MonoBehaviour
 		Vector2 spawnLocation = playerPos + distanceFromPlayer;
 		transform.position = spawnLocation;
     }
+
+	private void AnimationChange(string _nextAnimation)
+	{
+		if (currentAnimation == _nextAnimation) { return; }
+		animator.Play(_nextAnimation);
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.GetComponent<PlayerController>() != null) 
+        {
+            StopCoroutine("ChaseCountdown");
+            isChasing = false;
+            AnimationChange(STALKER_EAT);
+        }
+	}
 }

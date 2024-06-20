@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     private Animator animator;
 	private SpriteRenderer spriteRenderer;
+	private Rigidbody2D rigidbody2D;
 	private string currentAnimation;
 
 	//Animations
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
 	{
 		animator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		rigidbody2D = GetComponent<Rigidbody2D>();
 
 		AnimationChange(PLAYER_SOUL);
 	}
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
 		if (isMoving) { 
             OnMove(); 
-            transform.Translate(movePosition * moveSpeed * Time.deltaTime); 
+            rigidbody2D.MovePosition(transform.position + movePosition * moveSpeed * Time.deltaTime); 
         }
     }
 
@@ -67,5 +69,10 @@ public class PlayerController : MonoBehaviour
 	{
 		if (currentAnimation == _nextAnimation) { return; }
 		animator.Play(_nextAnimation);
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		movePosition = -movePosition/100;
 	}
 }

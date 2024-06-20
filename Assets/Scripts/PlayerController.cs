@@ -17,17 +17,13 @@ public class PlayerController : MonoBehaviour
 	private string currentAnimation;
 
 	//Animations
-	private const string PLAYER_IDLE = "player_idle";
-	private const string PLAYER_WALK = "player_walk";
-	private const string PLAYER_SOUL = "player_soul";
+	//private const string PLAYER_SOUL = "player_soul";
 
 	private void Start()
 	{
 		animator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
-
-		AnimationChange(PLAYER_SOUL);
 	}
 
 	private void Update()
@@ -37,12 +33,10 @@ public class PlayerController : MonoBehaviour
 		if (move.action.IsPressed() && !isMoving) 
 		{ 
 			isMoving = true; 
-			AnimationChange(PLAYER_WALK);
 		}
 		else if (!move.action.IsPressed()) 
 		{ 
 			isMoving = false;
-			AnimationChange(PLAYER_IDLE);
 		}
 	}
 
@@ -69,10 +63,5 @@ public class PlayerController : MonoBehaviour
 	{
 		if (currentAnimation == _nextAnimation) { return; }
 		animator.Play(_nextAnimation);
-	}
-
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		movePosition = -movePosition/100;
 	}
 }

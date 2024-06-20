@@ -21,15 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 133002802, guid: 49650a128dfad4041ad496b050eac7e6, type: 3}
+      value: {fileID: 72645692, guid: 5844d8cacfcf0144cb6031ec868f353a, type: 3}
     - time: 0.083333336
-      value: {fileID: 1668680238, guid: 49650a128dfad4041ad496b050eac7e6, type: 3}
+      value: {fileID: 275590370, guid: 5844d8cacfcf0144cb6031ec868f353a, type: 3}
     - time: 0.16666667
-      value: {fileID: -649463564, guid: 49650a128dfad4041ad496b050eac7e6, type: 3}
+      value: {fileID: -1055713700, guid: 5844d8cacfcf0144cb6031ec868f353a, type: 3}
     - time: 0.25
-      value: {fileID: -953251609, guid: 49650a128dfad4041ad496b050eac7e6, type: 3}
+      value: {fileID: -2106778739, guid: 5844d8cacfcf0144cb6031ec868f353a, type: 3}
     - time: 0.33333334
-      value: {fileID: 731246194, guid: 49650a128dfad4041ad496b050eac7e6, type: 3}
+      value: {fileID: -2046928394, guid: 5844d8cacfcf0144cb6031ec868f353a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -52,11 +52,11 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 133002802, guid: 49650a128dfad4041ad496b050eac7e6, type: 3}
-    - {fileID: 1668680238, guid: 49650a128dfad4041ad496b050eac7e6, type: 3}
-    - {fileID: -649463564, guid: 49650a128dfad4041ad496b050eac7e6, type: 3}
-    - {fileID: -953251609, guid: 49650a128dfad4041ad496b050eac7e6, type: 3}
-    - {fileID: 731246194, guid: 49650a128dfad4041ad496b050eac7e6, type: 3}
+    - {fileID: 72645692, guid: 5844d8cacfcf0144cb6031ec868f353a, type: 3}
+    - {fileID: 275590370, guid: 5844d8cacfcf0144cb6031ec868f353a, type: 3}
+    - {fileID: -1055713700, guid: 5844d8cacfcf0144cb6031ec868f353a, type: 3}
+    - {fileID: -2106778739, guid: 5844d8cacfcf0144cb6031ec868f353a, type: 3}
+    - {fileID: -2046928394, guid: 5844d8cacfcf0144cb6031ec868f353a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

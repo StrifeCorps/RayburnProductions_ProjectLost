@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     private PlayerController player;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-    private BoxCollider2D boxCollider;
+    private CircleCollider2D circleCollider;
     private Animator animator;
     private string currentAnimation;
     private Vector2 moveSpeed;
@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
         animator = GetComponent<Animator>();
         speedMultiplier = .1f;
         isChasing = false;
@@ -111,7 +111,7 @@ public class EnemyController : MonoBehaviour
     void SwitchSpriteAndCollisionActiveStatus(bool _input)
     {
         spriteRenderer.enabled = _input;
-        boxCollider.enabled = _input;
+        circleCollider.enabled = _input;
     }
 
     void Reposition()

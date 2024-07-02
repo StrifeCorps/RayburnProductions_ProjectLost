@@ -118,8 +118,8 @@ public class EnemyController : MonoBehaviour
     {
         Vector2 playerPos = player.transform.position;
 
-        offsetPlayer_x = Random.Range(-1, 2) * Random.Range(5, 20);
-        offsetPlayer_y = Random.Range(-1, 2) * Random.Range(5, 20);
+        offsetPlayer_x = Random.Range(-1, 2) * Random.Range(10, 20);
+        offsetPlayer_y = Random.Range(-1, 2) * Random.Range(10, 20);
 		Vector2 distanceFromPlayer = new(offsetPlayer_x, offsetPlayer_y);
 
 		Vector2 spawnLocation = playerPos + distanceFromPlayer;

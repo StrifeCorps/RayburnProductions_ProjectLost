@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4827964963139990377}
   - component: {fileID: 1560567135236382839}
   - component: {fileID: 7285110278785240462}
+  - component: {fileID: 4924784503694503266}
   m_Layer: 0
   m_Name: spr_forest_trees_01_1 1
   m_TagString: Untagged
@@ -165,3 +166,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4924784503694503266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5936666916764941856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8fa72c60d6fb4d4280b9f6551d31c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

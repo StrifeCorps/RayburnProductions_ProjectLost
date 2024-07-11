@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TestInteractable : InteractableObject
 {
+	[SerializeField] private DoorController doorController;
 	[SerializeField] private GameObject item;
 	private GameObject instance;
 	private Animator animator;
 	private string currentAnimation;
 	private bool activated;
+
+	public static event Action isCollected;
 
 	//ANIMATIONS
 	private const string TREASURE_CHEST = "treasure_chest";
@@ -19,6 +23,8 @@ public class TestInteractable : InteractableObject
 	{
 		animator = GetComponent<Animator>();
 		activated = false;
+
+		doorController = FindAnyObjectByType<DoorController>();
 	}
 
 	public override void DoAction()
@@ -27,7 +33,9 @@ public class TestInteractable : InteractableObject
 		instance = Instantiate(item, transform.position, Quaternion.identity);
 		AnimationChange(TREASURE_CHEST_OPEN);
 		StartCoroutine(DespawnItem());
+		doorController.AddKeys();
 		activated = true;
+		isCollected?.Invoke();
 	}
 
 	private void AnimationChange(string _nextAnimation)

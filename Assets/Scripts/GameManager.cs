@@ -63,8 +63,6 @@ public class GameManager : MonoBehaviour
 				Debug.Log("Game state is currently unassigned.");
 				break;
 		}
-
-		//Debug.Log(playerInput.currentActionMap);
 	}
 
 	public void ResetStateToActive()

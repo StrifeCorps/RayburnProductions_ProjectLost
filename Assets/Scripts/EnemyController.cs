@@ -9,12 +9,10 @@ using Random = UnityEngine.Random;
 public class EnemyController : MonoBehaviour
 {
     private PlayerController player;
-    private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private CircleCollider2D circleCollider;
     private Animator animator;
     private string currentAnimation;
-    private Vector2 moveSpeed;
     private bool isChasing;
     [SerializeField] private int cooldownTimer;
     [SerializeField] private int offsetPlayer_x, offsetPlayer_y;
@@ -43,8 +41,18 @@ public class EnemyController : MonoBehaviour
         Spawn();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+	private void OnEnable()
+	{
+        TestInteractable.isCollected += IncreaseDifficulty;
+	}
+
+	private void OnDisable()
+	{
+		TestInteractable.isCollected -= IncreaseDifficulty;
+	}
+
+	// Update is called once per frame
+	void FixedUpdate()
     {
 		if (GameManager.Instance.state != GameManager.gameState.Active) { return; }
 		FollowPlayer();
@@ -86,8 +94,10 @@ public class EnemyController : MonoBehaviour
         AnimationChange(STALKER_WALK);
 
         while(count <= chaseTimer)
-        {  
-            count++;
+        {
+			while (GameManager.Instance.state != GameManager.gameState.Active) { yield return new WaitForEndOfFrame(); }
+
+			count++;
             yield return new WaitForSeconds(1f);
         }
 
@@ -101,7 +111,9 @@ public class EnemyController : MonoBehaviour
         
         while( temp <= _cooldown)
         {
-            yield return new WaitForSeconds(1f);
+			while (GameManager.Instance.state != GameManager.gameState.Active) { yield return new WaitForEndOfFrame(); }
+
+			yield return new WaitForSeconds(1f);
             temp++;
         }
 
@@ -118,12 +130,22 @@ public class EnemyController : MonoBehaviour
     {
         Vector2 playerPos = player.transform.position;
 
-        offsetPlayer_x = Random.Range(-1, 2) * Random.Range(10, 20);
-        offsetPlayer_y = Random.Range(-1, 2) * Random.Range(10, 20);
+        do
+        {
+            offsetPlayer_x = Random.Range(-2, 2) * Random.Range(10, 20);
+            offsetPlayer_y = Random.Range(-2, 2) * Random.Range(10, 20);
+		}
+        while (offsetPlayer_x == 0 || offsetPlayer_y == 0);
 		Vector2 distanceFromPlayer = new(offsetPlayer_x, offsetPlayer_y);
 
 		Vector2 spawnLocation = playerPos + distanceFromPlayer;
 		transform.position = spawnLocation;
+    }
+
+    private void IncreaseDifficulty()
+    {
+        speedMultiplier *= 1.15f;
+        cooldownTimer -= 3;
     }
 
 	private void AnimationChange(string _nextAnimation)

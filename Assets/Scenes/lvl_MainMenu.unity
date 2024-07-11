@@ -447,9 +447,9 @@ PrefabInstance:
       propertyPath: m_TrackedDeviceOrientationAction
       value: 
       objectReference: {fileID: 17570525}
-    - target: {fileID: 5612924158540129050, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_MatchWidthOrHeight
-      value: 1
+    - target: {fileID: 5432073550266790113, guid: c630258e808d95945b845255cd637eb5, type: 3}
+      propertyPath: m_Color.a
+      value: 0.92156863
       objectReference: {fileID: 0}
     - target: {fileID: 7213492501851593040, guid: c630258e808d95945b845255cd637eb5, type: 3}
       propertyPath: m_Camera

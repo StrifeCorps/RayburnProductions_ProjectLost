@@ -8,13 +8,15 @@ public class CameraControl : MonoBehaviour
     [SerializeField] private PlayerController player;
 	[SerializeField] private SpriteRenderer cameraVignette;
 	private IEnumerator pulseVignette;
+	private bool runVignette;
 
 	private void Start()
 	{
 		player = FindAnyObjectByType<PlayerController>();
 		cameraVignette = GetComponentInChildren<SpriteRenderer>();
-		cameraVignette.enabled = false;
 		pulseVignette = PulseVignette();
+		runVignette = false;
+		StartCoroutine(pulseVignette);
 	}
 
 	private void OnEnable()
@@ -31,52 +33,51 @@ public class CameraControl : MonoBehaviour
 
 	public void AddVignette()
 	{
-		Debug.Log("You did it! Enemy Spawned");
-		cameraVignette.enabled = true;
-		StartCoroutine(pulseVignette);
+		runVignette = true;
 	}
 
 	public void RemoveVignette()
 	{
-		Debug.Log("Enemy despawned");
-		cameraVignette.enabled = false;
-		StopCoroutine(pulseVignette);
+		runVignette = false;
 	}
 
 	IEnumerator PulseVignette()
 	{
-		bool alphaDirection = false;
 		Color tempColor;
 
-		ChecklAlphaDirection(ref alphaDirection);
-
-		while(alphaDirection)
+		while (true)
 		{
-			tempColor = cameraVignette.color;
-			tempColor.a -= .01f;
-			cameraVignette.color = tempColor;
-			ChecklAlphaDirection(ref alphaDirection);
+			while (runVignette)
+			{
+				while (cameraVignette.color.a <= .9f)
+				{
+					tempColor = cameraVignette.color;
+					tempColor.a += .01f;
+					cameraVignette.color = tempColor;
+					yield return new WaitForSeconds(.05f);
+					Debug.Log("Increase Vignette");
+				}
+
+				while (cameraVignette.color.a >= .6f)
+				{
+					tempColor = cameraVignette.color;
+					tempColor.a -= .01f;
+					cameraVignette.color = tempColor;
+					yield return new WaitForSeconds(.05f);
+					Debug.Log("Decrease Vignette");
+				}
+			}
+		
+			while(!runVignette && cameraVignette.color.a > 0)
+			{
+				tempColor = cameraVignette.color;
+				tempColor.a -= .01f;
+				cameraVignette.color = tempColor;
+				yield return new WaitForSeconds(.01f);
+			}
+
 			yield return new WaitForSeconds(.1f);
 		}
-
-		while (!alphaDirection)
-		{
-			tempColor = cameraVignette.color;
-			tempColor.a += .01f;
-			cameraVignette.color = tempColor;
-			ChecklAlphaDirection(ref alphaDirection);
-			yield return new WaitForSeconds(.1f);
-		}
-
-		StartCoroutine(pulseVignette);
-	}
-
-	private bool ChecklAlphaDirection(ref bool _alphaDirection)
-	{
-		if (cameraVignette.color.a >= .4f) { _alphaDirection = true; }
-		else if (cameraVignette.color.a <= 0) { _alphaDirection = false; }
-
-		return _alphaDirection;
 	}
 
 	private void LateUpdate()

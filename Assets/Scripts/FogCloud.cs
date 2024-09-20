@@ -1,28 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class FogCloud : MonoBehaviour
 {
-    [SerializeField] private Sprite[] sprites;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    public Sprite[] sprites;
+    public SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
         GenerateAlpha();
         GenerateSize();
-        GenerateSiblings();
+
+        Debug.Log(Camera.main.pixelWidth);
     }
 
-	private void FixedUpdate()
+	void FixedUpdate()
 	{
         transform.Translate(Vector3.left/10 * Time.deltaTime);
 	}
 
-	void GenerateAlpha()
+	private void Update()
+	{
+		if (transform.position.x < (Camera.main.transform.position.x - Camera.main.pixelWidth/30)) { Destroy(gameObject); }
+        else if (transform.position.x > (Camera.main.transform.position.x + Camera.main.pixelWidth/30)) { Destroy(gameObject); }
+	}
+
+	public void GenerateAlpha()
     {
         Color tempColor = spriteRenderer.color;
         tempColor.a = Random.Range(.2f,.8f);
@@ -30,32 +38,9 @@ public class FogCloud : MonoBehaviour
         spriteRenderer.color = tempColor;
     }
 
-    void GenerateSize()
+    public void GenerateSize()
     {
         float size = Random.Range(1.5f, 3f);
         transform.position.Scale(new Vector3(size, size, 1));
-    }
-
-    void GenerateSiblings()
-    {
-        FogCloud newCloud;
-        int direction = 0;
-        int spawnChance = Random.Range(0, 2);
-        Debug.Log(spawnChance);
-
-        do
-        {
-            direction = Random.Range(-1, 2);
-        }
-        while (direction == 0);
-
-        Vector3 temp = new Vector3(spriteRenderer.bounds.extents.x * direction, spriteRenderer.bounds.extents.y * direction, 0);
-
-
-		if (spawnChance > 0) 
-        { 
-            newCloud = Instantiate(this, this.transform.position + temp, Quaternion.identity);
-            newCloud.transform.SetParent(transform);
-        }
     }
 }

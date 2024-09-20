@@ -55,7 +55,6 @@ public class CameraControl : MonoBehaviour
 					tempColor.a += .01f;
 					cameraVignette.color = tempColor;
 					yield return new WaitForSeconds(.05f);
-					Debug.Log("Increase Vignette");
 				}
 
 				while (cameraVignette.color.a >= .6f)
@@ -64,7 +63,6 @@ public class CameraControl : MonoBehaviour
 					tempColor.a -= .01f;
 					cameraVignette.color = tempColor;
 					yield return new WaitForSeconds(.05f);
-					Debug.Log("Decrease Vignette");
 				}
 			}
 		

@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
@@ -34,6 +36,16 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+	private void OnEnable()
+	{
+		PlayerController.OnPlayerDeath += GameRestart;
+	}
+
+	private void OnDisable()
+	{
+		PlayerController.OnPlayerDeath -= GameRestart;
+	}
+
 	private void Start()
 	{
 		AudioManager = FindObjectOfType<AudioManager>();
@@ -60,7 +72,7 @@ public class GameManager : MonoBehaviour
 			case gameState.Loading:
 				break;
 			default:
-				Debug.Log("Game state is currently unassigned.");
+				throw new NotImplementedException("Gamestate made it to default and should not be in this state.");
 				break;
 		}
 	}
@@ -92,12 +104,27 @@ public class GameManager : MonoBehaviour
 			{
 				SetGameState(gameState.Active);
 				UIManager.PauseUI(false);
+				AudioManager.IncreaseTrackVolume();
 			}
 			else
 			{
 				SetGameState(gameState.UI);
 				UIManager.PauseUI(true);
+				AudioManager.LowerTrackVolume();
 			}
 		}
+	}
+
+	public void EndGame()
+	{
+		SetGameState(gameState.UI);
+		UIManager.EndGame(true);
+	}
+
+	public void GameRestart()
+	{
+		//Either UI here or restart after player death anim
+		SetGameState(gameState.UI);
+		UIManager.GameOver(true);
 	}
 }

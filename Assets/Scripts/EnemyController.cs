@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     private PlayerController player;
     private SpriteRenderer spriteRenderer;
     private CircleCollider2D circleCollider;
+    private AudioSource audioSource;
     private Animator animator;
     private string currentAnimation;
     private bool isChasing;
@@ -35,10 +36,11 @@ public class EnemyController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         circleCollider = GetComponent<CircleCollider2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         speedMultiplier = .1f;
         isChasing = false;
 
-        Spawn();
+        Despawn();
     }
 
 	private void OnEnable()
@@ -78,9 +80,11 @@ public class EnemyController : MonoBehaviour
         OnSpawn?.Invoke();
         Reposition();
         AnimationChange(STALKER_SPAWN);
+        audioSource.Play();
     }
     void Despawn()
     {
+        audioSource.Stop();
         AnimationChange(STALKER_WALK);
         SwitchSpriteAndCollisionActiveStatus(false);
 		OnDespawn?.Invoke();
@@ -162,5 +166,11 @@ public class EnemyController : MonoBehaviour
             isChasing = false;
             AnimationChange(STALKER_EAT);
         }
+	}
+
+    public void Death()
+    {
+		AnimationChange(STALKER_DESPAWN);
+        gameObject.SetActive(false);
 	}
 }

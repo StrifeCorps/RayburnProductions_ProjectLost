@@ -14,7 +14,13 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 	private SpriteRenderer spriteRenderer;
 	private Rigidbody2D rigidbody2D;
+	private AudioSource audioSource;
 	private string currentAnimation;
+
+	public static event Action OnPlayerDeath;
+
+	private const string ANIM_PLAYER_WALK = "anim_player_walk";
+	private const string ANIM_PLAYER_DEATH = "anim_player_death";
 
 	//Animations
 	//private const string PLAYER_SOUL = "player_soul";
@@ -24,6 +30,7 @@ public class PlayerController : MonoBehaviour
 		animator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	private void Update()
@@ -63,5 +70,37 @@ public class PlayerController : MonoBehaviour
 	{
 		if (currentAnimation == _nextAnimation) { return; }
 		animator.Play(_nextAnimation);
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.GetComponent<EnemyController>())
+		{
+			PlayerDeathPlayAnimation();
+			return;
+		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.name == "obj_clearlevel")
+		{
+			if (FindObjectOfType<EnemyController>())
+			{
+				FindObjectOfType<EnemyController>().Death();
+			}
+		}
+	}
+
+	private void PlayerDeathPlayAnimation()
+	{
+		AnimationChange(ANIM_PLAYER_DEATH);
+		audioSource.Play();
+	}
+
+	private void PlayerDeath()
+	{
+		OnPlayerDeath?.Invoke();
+		animator.speed = 0;
 	}
 }

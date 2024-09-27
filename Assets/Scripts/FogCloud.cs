@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class FogCloud : MonoBehaviour
 {
@@ -15,8 +14,6 @@ public class FogCloud : MonoBehaviour
         spriteRenderer.sprite = sprites[Random.Range(0, sprites.Length)];
         GenerateAlpha();
         GenerateSize();
-
-        Debug.Log(Camera.main.pixelWidth);
     }
 
 	void FixedUpdate()
@@ -26,6 +23,7 @@ public class FogCloud : MonoBehaviour
 
 	private void Update()
 	{
+        //Out of bounds delete
 		if (transform.position.x < (Camera.main.transform.position.x - Camera.main.pixelWidth/30)) { Destroy(gameObject); }
         else if (transform.position.x > (Camera.main.transform.position.x + Camera.main.pixelWidth/30)) { Destroy(gameObject); }
 	}

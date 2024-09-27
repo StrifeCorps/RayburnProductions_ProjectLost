@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    private int keys;
+    public int keys { get; private set; }
 
 	private void Start()
 	{
@@ -23,5 +23,6 @@ public class DoorController : MonoBehaviour
     public void AddKeys()
     {
         keys++;
+        GameManager.Instance.UIManager.UpdateCollectibleCount(keys);
     }
 }

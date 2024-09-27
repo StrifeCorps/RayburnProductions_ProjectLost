@@ -66,6 +66,6 @@ public class InteractableObject : MonoBehaviour
 
 	public virtual void DoAction()
 	{
-		Debug.Log($@"{this.name} has been interacted with by the player!");
+		//Debug.Log($@"{this.name} has been interacted with by the player!");
 	}
 }

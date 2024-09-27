@@ -17,6 +17,7 @@ public class CameraControl : MonoBehaviour
 		pulseVignette = PulseVignette();
 		runVignette = false;
 		StartCoroutine(pulseVignette);
+		Camera.main.orthographicSize = 7F;
 	}
 
 	private void OnEnable()
@@ -45,6 +46,7 @@ public class CameraControl : MonoBehaviour
 	{
 		Color tempColor;
 
+		//Always runs - increase and decrease vignette over time
 		while (true)
 		{
 			while (runVignette)

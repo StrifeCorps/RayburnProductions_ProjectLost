@@ -8,6 +8,7 @@ public class TestInteractable : InteractableObject
 {
 	[SerializeField] private DoorController doorController;
 	[SerializeField] private GameObject item;
+	[SerializeField] private AudioSource audioSource;
 	private GameObject instance;
 	private Animator animator;
 	private string currentAnimation;
@@ -22,6 +23,7 @@ public class TestInteractable : InteractableObject
 	private void Start()
 	{
 		animator = GetComponent<Animator>();
+		audioSource = GetComponent<AudioSource>();
 		activated = false;
 
 		doorController = FindAnyObjectByType<DoorController>();
@@ -36,6 +38,7 @@ public class TestInteractable : InteractableObject
 		doorController.AddKeys();
 		activated = true;
 		isCollected?.Invoke();
+		audioSource.Play();
 	}
 
 	private void AnimationChange(string _nextAnimation)

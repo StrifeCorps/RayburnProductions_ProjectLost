@@ -22,7 +22,8 @@ public class FogGenerator : MonoBehaviour
         int yDirection = GenerateOneNegativeOne();
         int spawnSide = GenerateOneNegativeOne();
 
-		spawnLocation = new Vector2 (20*spawnSide + player.gameObject.transform.position.x, (y* yDirection) + player.gameObject.transform.position.y);
+		spawnLocation = new Vector2 (20*spawnSide
+            + player.gameObject.transform.position.x, (y* yDirection) + player.gameObject.transform.position.y);
     }
 
     int GenerateOneNegativeOne()

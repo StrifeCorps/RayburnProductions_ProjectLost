@@ -7,6 +7,7 @@ public class CameraControl : MonoBehaviour
 {
     [SerializeField] private PlayerController player;
 	[SerializeField] private SpriteRenderer cameraVignette;
+	private Resolution resolution;
 	private IEnumerator pulseVignette;
 	private bool runVignette;
 
@@ -16,8 +17,13 @@ public class CameraControl : MonoBehaviour
 		cameraVignette = GetComponentInChildren<SpriteRenderer>();
 		pulseVignette = PulseVignette();
 		runVignette = false;
-		StartCoroutine(pulseVignette);
-		Camera.main.orthographicSize = 7F;
+		resolution = Screen.currentResolution;
+
+		if (cameraVignette != null)
+		{
+			ResizeVignette();
+			StartCoroutine(pulseVignette);
+		}
 	}
 
 	private void OnEnable()
@@ -80,10 +86,33 @@ public class CameraControl : MonoBehaviour
 		}
 	}
 
+	private void ResizeVignette()
+	{
+		float width = cameraVignette.sprite.bounds.size.x;
+		float height = cameraVignette.sprite.bounds.size.y;
+
+		double worldScreenHeight = Camera.main.orthographicSize * 2.0;
+		double worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
+
+		float tempX = (float)worldScreenWidth / width;
+		float tempY = (float)worldScreenHeight / height;
+
+		cameraVignette.transform.localScale = new Vector3(tempX, tempY, cameraVignette.transform.localScale.z);
+	}
+
 	private void LateUpdate()
 	{
 		if (player != null) { 
 			transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
+		}
+
+		if (resolution.height != Screen.height || resolution.width != Screen.width)
+		{
+			if(cameraVignette != null)
+			{
+				ResizeVignette();
+				resolution = Screen.currentResolution;
+			}
 		}
 	}
 }

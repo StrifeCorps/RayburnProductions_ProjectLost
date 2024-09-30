@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     private Animator animator;
 	private SpriteRenderer spriteRenderer;
-	private Rigidbody2D rigidbody2D;
 	private AudioSource audioSource;
+	private Rigidbody2D rigidbody2;
 	private string currentAnimation;
 
 	public static event Action OnPlayerDeath;
@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
 	{
 		animator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		rigidbody2D = GetComponent<Rigidbody2D>();
 		audioSource = GetComponent<AudioSource>();
+		rigidbody2 = GetComponent<Rigidbody2D>();
 	}
 
 	private void Update()
@@ -53,14 +53,15 @@ public class PlayerController : MonoBehaviour
 		if (GameManager.Instance.state != GameManager.gameState.Active) { return; }
 
 		if (isMoving) { 
-            OnMove(); 
-            rigidbody2D.MovePosition(transform.position + movePosition * moveSpeed * Time.deltaTime); 
-        }
+            OnMove();
+			rigidbody2.MovePosition(transform.position + (movePosition * moveSpeed * Time.deltaTime));
+		}
     }
 
     public void OnMove()
     {
-        movePosition = move.action.ReadValue<Vector2>();
+        Vector2 temp = Vector2Int.RoundToInt(move.action.ReadValue<Vector2>());
+		movePosition = temp;
 
 		if (movePosition.x < 0) { spriteRenderer.flipX = true; }
 		else { spriteRenderer.flipX = false; }

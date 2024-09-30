@@ -371,22 +371,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 870753115229771219, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 870753115229771219, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 870753115229771219, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 870753115229771219, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1176539165189828442, guid: c630258e808d95945b845255cd637eb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -427,14 +411,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1598067716505414086, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1598067716505414086, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_PixelPerfect
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2073501418431381781, guid: c630258e808d95945b845255cd637eb5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -447,25 +423,9 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2310264538575315752, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2888243977177875007, guid: c630258e808d95945b845255cd637eb5, type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123482560352059260, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ScreenMatchMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123482560352059260, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 3123482560352059260, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 3329277110713626340, guid: c630258e808d95945b845255cd637eb5, type: 3}
       propertyPath: m_MoveAction
@@ -507,78 +467,10 @@ PrefabInstance:
       propertyPath: m_TrackedDeviceOrientationAction
       value: 
       objectReference: {fileID: 17570525}
-    - target: {fileID: 4136852376314888252, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ScreenMatchMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4136852376314888252, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 4136852376314888252, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 5218509663557456339, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612924158540129050, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ScaleFactor
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612924158540129050, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612924158540129050, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ScreenMatchMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612924158540129050, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612924158540129050, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 5612924158540129050, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ReferencePixelsPerUnit
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6863864623145727974, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ScreenMatchMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6863864623145727974, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 6863864623145727974, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 600
-      objectReference: {fileID: 0}
     - target: {fileID: 7213492501851593040, guid: c630258e808d95945b845255cd637eb5, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 7826383292878270400, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ScreenMatchMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7826383292878270400, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 800
-      objectReference: {fileID: 0}
-    - target: {fileID: 7826383292878270400, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 7966913723025874325, guid: c630258e808d95945b845255cd637eb5, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
